@@ -1,3 +1,10 @@
-Deposit_WithPositiveAmount_UpdatesBalance: Bu test, pozitif bir miktar yatırıldığında bakiyenin güncellenip güncellenmediğini kontrol eder.
-Deposit_WithNegativeAmount_ThrowsArgumentException: Bu test, negatif bir miktar yatırılmaya çalışıldığında bir ArgumentException fırlatılıp fırlatılmadığını kontrol eder.
-GetBalance_Initially_ReturnsZero: Bu test, yeni bir hesap oluşturulduğunda başlangıç bakiyesinin sıfır olup olmadığını kontrol eder.
+# MyBankingApp
+
+Bu proje, temel bankacılık işlemlerini gerçekleştiren bir bankacılık uygulamasıdır. Proje, hesap bakiyesi kontrolü, para yatırma, para çekme, para transferi ve işlem geçmişi gibi işlevleri içermektedir.
+
+## Proje Yapısı
+
+Proje aşağıdaki gibi iki ana klasörden oluşmaktadır:
+- `src/`: Uygulamanın ana kaynak kodunu içerir.
+- `tests/`: Uygulamanın test kodlarını içerir.
+
