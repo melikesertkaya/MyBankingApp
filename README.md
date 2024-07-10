@@ -1,6 +1,6 @@
 # MyBankingApp
 
-Bu proje, temel bankacılık işlemlerini gerçekleştiren bir bankacılık uygulamasıdır. Proje, hesap bakiyesi kontrolü, para yatırma, para çekme, para transferi ve işlem geçmişi gibi işlevleri içermektedir.
+ Proje, hesap bakiyesi kontrolü, para yatırma, para çekme, para transferi ve işlem geçmişi gibi işlevleri içermektedir.
 
 ## Proje Yapısı
 
