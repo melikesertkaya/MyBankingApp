@@ -1,4 +1,6 @@
 ﻿using Xunit;
+using Moq;
+using System;
 
 namespace MyBankingApp.Tests
 {
@@ -30,16 +32,75 @@ namespace MyBankingApp.Tests
         }
 
         [Fact]
-        public void GetBalance_Initially_ReturnsZero()
+        public void Withdraw_WithSufficientFunds_UpdatesBalance()
         {
             // Arrange
             var account = new BankAccount();
+            account.Deposit(100m);
+            var withdrawAmount = 50m;
 
             // Act
-            var balance = account.GetBalance();
+            account.Withdraw(withdrawAmount);
 
             // Assert
-            Assert.Equal(0m, balance);
+            Assert.Equal(50m, account.GetBalance());
+        }
+
+        [Fact]
+        public void Withdraw_WithInsufficientFunds_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            var account = new BankAccount();
+            var withdrawAmount = 50m;
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => account.Withdraw(withdrawAmount));
+        }
+
+        [Fact]
+        public void Transfer_ValidTransaction_UpdatesBothAccounts()
+        {
+            // Arrange
+            var sourceAccount = new BankAccount();
+            var targetAccount = new BankAccount();
+            sourceAccount.Deposit(100m);
+            var transferAmount = 50m;
+
+            // Act
+            sourceAccount.Transfer(targetAccount, transferAmount);
+
+            // Assert
+            Assert.Equal(50m, sourceAccount.GetBalance());
+            Assert.Equal(50m, targetAccount.GetBalance());
+        }
+
+        [Fact]
+        public void Transfer_WithInsufficientFunds_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            var sourceAccount = new BankAccount();
+            var targetAccount = new BankAccount();
+            var transferAmount = 50m;
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => sourceAccount.Transfer(targetAccount, transferAmount));
+        }
+
+        [Fact]
+        public void GetTransactionHistory_ReturnsCorrectHistory()
+        {
+            // Arrange
+            var account = new BankAccount();
+            account.Deposit(100m);
+            account.Withdraw(50m);
+
+            // Act
+            var history = account.GetTransactionHistory();
+
+            // Assert
+            Assert.Equal(2, history.Count);
+            Assert.Contains("Deposited: 100", history);
+            Assert.Contains("Withdrew: 50", history);
         }
     }
 }
